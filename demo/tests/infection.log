@@ -1,0 +1,206 @@
+Escaped mutants:
+================
+
+1) /home/can/code/phpkonf-2023-mutation-testing/demo/src/Ingredients/Tomato.php:19    [M] DecrementInteger
+
+--- Original
++++ New
+@@ @@
+     }
+     public function getCalories() : int
+     {
+-        return 10;
++        return 9;
+     }
+ }
+
+
+2) /home/can/code/phpkonf-2023-mutation-testing/demo/src/Ingredients/Tomato.php:19    [M] IncrementInteger
+
+--- Original
++++ New
+@@ @@
+     }
+     public function getCalories() : int
+     {
+-        return 10;
++        return 11;
+     }
+ }
+
+
+3) /home/can/code/phpkonf-2023-mutation-testing/demo/src/Ingredients/Tomato.php:19    [M] IntegerNegation
+
+--- Original
++++ New
+@@ @@
+     }
+     public function getCalories() : int
+     {
+-        return 10;
++        return -10;
+     }
+ }
+
+
+4) /home/can/code/phpkonf-2023-mutation-testing/demo/src/Order.php:44    [M] Foreach_
+
+--- Original
++++ New
+@@ @@
+     {
+         $discounts = [];
+         // Get all discounts from pizzas.
+-        foreach ($this->pizzas as $pizza) {
++        foreach (array() as $pizza) {
+             /** @var Discount $discount */
+             $discount = $pizza['discount'];
+             if ($discount) {
+
+
+5) /home/can/code/phpkonf-2023-mutation-testing/demo/src/Order.php:47    [M] IfNegation
+
+--- Original
++++ New
+@@ @@
+         foreach ($this->pizzas as $pizza) {
+             /** @var Discount $discount */
+             $discount = $pizza['discount'];
+-            if ($discount) {
++            if (!$discount) {
+                 $discounts[] = [$discount->getName(), $discount->getDiscount($pizza['pizza'])];
+             }
+         }
+
+
+6) /home/can/code/phpkonf-2023-mutation-testing/demo/src/Order.php:48    [M] ArrayItemRemoval
+
+--- Original
++++ New
+@@ @@
+             /** @var Discount $discount */
+             $discount = $pizza['discount'];
+             if ($discount) {
+-                $discounts[] = [$discount->getName(), $discount->getDiscount($pizza['pizza'])];
++                $discounts[] = [$discount->getDiscount($pizza['pizza'])];
+             }
+         }
+         return $discounts;
+
+
+7) /home/can/code/phpkonf-2023-mutation-testing/demo/src/Order.php:52    [M] ArrayOneItem
+
+--- Original
++++ New
+@@ @@
+                 $discounts[] = [$discount->getName(), $discount->getDiscount($pizza['pizza'])];
+             }
+         }
+-        return $discounts;
++        return count($discounts) > 1 ? array_slice($discounts, 0, 1, true) : $discounts;
+     }
+     public function getTotalCalories() : int
+     {
+
+
+8) /home/can/code/phpkonf-2023-mutation-testing/demo/src/Order.php:57    [M] DecrementInteger
+
+--- Original
++++ New
+@@ @@
+     }
+     public function getTotalCalories() : int
+     {
+-        $calories = 0;
++        $calories = -1;
+         foreach ($this->pizzas as $pizza) {
+             $calories += $pizza['pizza']->getCalories();
+         }
+
+
+9) /home/can/code/phpkonf-2023-mutation-testing/demo/src/Order.php:59    [M] Foreach_
+
+--- Original
++++ New
+@@ @@
+     public function getTotalCalories() : int
+     {
+         $calories = 0;
+-        foreach ($this->pizzas as $pizza) {
++        foreach (array() as $pizza) {
+             $calories += $pizza['pizza']->getCalories();
+         }
+         return $calories;
+     }
+ }
+
+
+10) /home/can/code/phpkonf-2023-mutation-testing/demo/src/Order.php:60    [M] Assignment
+
+--- Original
++++ New
+@@ @@
+     {
+         $calories = 0;
+         foreach ($this->pizzas as $pizza) {
+-            $calories += $pizza['pizza']->getCalories();
++            $calories = $pizza['pizza']->getCalories();
+         }
+         return $calories;
+     }
+ }
+
+
+11) /home/can/code/phpkonf-2023-mutation-testing/demo/src/Order.php:60    [M] PlusEqual
+
+--- Original
++++ New
+@@ @@
+     {
+         $calories = 0;
+         foreach ($this->pizzas as $pizza) {
+-            $calories += $pizza['pizza']->getCalories();
++            $calories -= $pizza['pizza']->getCalories();
+         }
+         return $calories;
+     }
+ }
+
+
+Timed Out mutants:
+==================
+
+Skipped mutants:
+================
+
+Not Covered mutants:
+====================
+
+1) /home/can/code/phpkonf-2023-mutation-testing/demo/src/Ingredients/Dough.php:9    [M] UnwrapStrToLower
+
+--- Original
++++ New
+@@ @@
+ {
+     public function getName() : string
+     {
+-        return strtolower('Dough');
++        return 'Dough';
+     }
+     public function getCost() : float
+     {
+
+
+2) /home/can/code/phpkonf-2023-mutation-testing/demo/src/Ingredients/Tomato.php:9    [M] UnwrapStrToLower
+
+--- Original
++++ New
+@@ @@
+ {
+     public function getName() : string
+     {
+-        return strtolower('Tomato');
++        return 'Tomato';
+     }
+     public function getCost() : float
+     {
